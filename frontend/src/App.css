@@ -1,0 +1,158 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.converter-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.converter-card.error {
+  border: 1px solid #ff4444;
+  color: #ff4444;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 24px;
+}
+
+.converter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group, .select-wrapper {
+  width: 100%;
+}
+
+.input-group, .currency-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.currency-group {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+.select-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.swap-button {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  align-self: flex-end;
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.swap-button:hover {
+  background: #e0e0e0;
+}
+
+.result {
+  text-align: center;
+  margin-top: 30px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.result p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.result-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.result-message {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .converter-card {
+    padding: 20px;
+  }
+
+  .currency-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap-button {
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+
