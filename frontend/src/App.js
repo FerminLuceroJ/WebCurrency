@@ -21,7 +21,6 @@ function App() {
         const data = await response.json();
 
         if (data.error) {
-          // eslint-disable-next-line no-throw-literal
           throw new Error(data.error.message || 'Error fetching exchange rates');
         }
 
@@ -36,7 +35,6 @@ function App() {
     fetchExchangeRates();
   }, []);
 
-  // Este useEffect maneja la conversión cuando alguna de las dependencias cambia.
   useEffect(() => {
     if (!exchangeRates || !amount || isNaN(amount)) {
       setResult('');
@@ -61,6 +59,13 @@ function App() {
   const handleSwapCurrencies = () => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
+  };
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    if (!isNaN(value) && value !== '') {
+      setAmount(value);
+    }
   };
 
   if (loading) {
@@ -95,7 +100,7 @@ function App() {
                   id="amount"
                   type="number"
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={handleAmountChange}
                   className="no-spinner"
                   placeholder="Ingrese la cantidad"
               />
@@ -111,7 +116,6 @@ function App() {
                   {exchangeRates && Object.keys(exchangeRates).map((currency) => (
                       <option key={currency} value={currency}>{currency}</option>
                   ))}
-                  <option value="EUR">EUR</option>
                 </select>
               </div>
               <button
@@ -131,7 +135,6 @@ function App() {
                   {exchangeRates && Object.keys(exchangeRates).map((currency) => (
                       <option key={currency} value={currency}>{currency}</option>
                   ))}
-                  <option value="EUR">EUR</option>
                 </select>
               </div>
             </div>
@@ -139,7 +142,7 @@ function App() {
           <div className="result">
             <p>Resultado:</p>
             <p className="result-value">
-              {amount && !isNaN(amount) ? `${result} ${toCurrency}` : `0 ${toCurrency}`}
+              {result !== '' ? `${result} ${toCurrency}` : 'Por favor ingrese una cantidad válida'}
             </p>
           </div>
         </div>
