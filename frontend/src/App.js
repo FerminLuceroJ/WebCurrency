@@ -21,6 +21,7 @@ function App() {
         const data = await response.json();
 
         if (data.error) {
+          // eslint-disable-next-line no-throw-literal
           throw new Error(data.error.message || 'Error fetching exchange rates');
         }
 
@@ -35,39 +36,32 @@ function App() {
     fetchExchangeRates();
   }, []);
 
-  const handleConvert = () => {
-    if (!exchangeRates) return;
-
-    if (!amount || isNaN(amount)) {
+  // Este useEffect maneja la conversión cuando alguna de las dependencias cambia.
+  useEffect(() => {
+    if (!exchangeRates || !amount || isNaN(amount)) {
       setResult('');
       return;
     }
 
     const amountNumber = parseFloat(amount);
-    let result;
+    let conversionResult;
 
     if (fromCurrency === 'EUR') {
-      result = amountNumber * exchangeRates[toCurrency];
+      conversionResult = amountNumber * exchangeRates[toCurrency];
     } else if (toCurrency === 'EUR') {
-      result = amountNumber / exchangeRates[fromCurrency];
+      conversionResult = amountNumber / exchangeRates[fromCurrency];
     } else {
       const amountInEur = amountNumber / exchangeRates[fromCurrency];
-      result = amountInEur * exchangeRates[toCurrency];
+      conversionResult = amountInEur * exchangeRates[toCurrency];
     }
 
-    setResult(result.toFixed(2));
-  };
+    setResult(conversionResult.toFixed(2));
+  }, [amount, fromCurrency, toCurrency, exchangeRates]);
 
   const handleSwapCurrencies = () => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
   };
-
-  useEffect(() => {
-    if (exchangeRates) {
-      handleConvert();
-    }
-  }, [amount, fromCurrency, toCurrency, exchangeRates]);
 
   if (loading) {
     return (
@@ -154,4 +148,3 @@ function App() {
 }
 
 export default App;
-
