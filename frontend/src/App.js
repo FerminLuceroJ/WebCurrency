@@ -16,7 +16,7 @@ function App() {
         setLoading(true);
         setError(null);
         const response = await fetch(
-            'http://api.exchangeratesapi.io/v1/latest?access_key=3004299f04ac0aa7e9665328b696988d'
+            `https://cors-anywhere.herokuapp.com/http://api.exchangeratesapi.io/v1/latest?access_key=3004299f04ac0aa7e9665328b696988d`
         );
         const data = await response.json();
 
