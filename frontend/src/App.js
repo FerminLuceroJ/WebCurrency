@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import CurrencyFlag from './CurrencyFlag';
 
 function App() {
   const [fromCurrency, setFromCurrency] = useState('EUR');
@@ -108,15 +109,18 @@ function App() {
             <div className="currency-group">
               <div className="select-wrapper">
                 <label htmlFor="fromCurrency">De</label>
-                <select
-                    id="fromCurrency"
-                    value={fromCurrency}
-                    onChange={(e) => setFromCurrency(e.target.value)}
-                >
-                  {exchangeRates && Object.keys(exchangeRates).map((currency) => (
-                      <option key={currency} value={currency}>{currency}</option>
-                  ))}
-                </select>
+                <div className="currency-select">
+                  <CurrencyFlag code={fromCurrency} />
+                  <select
+                      id="fromCurrency"
+                      value={fromCurrency}
+                      onChange={(e) => setFromCurrency(e.target.value)}
+                  >
+                    {exchangeRates && Object.keys(exchangeRates).map((currency) => (
+                        <option key={currency} value={currency}>{currency}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <button
                   className="swap-button"
@@ -127,15 +131,18 @@ function App() {
               </button>
               <div className="select-wrapper">
                 <label htmlFor="toCurrency">A</label>
-                <select
-                    id="toCurrency"
-                    value={toCurrency}
-                    onChange={(e) => setToCurrency(e.target.value)}
-                >
-                  {exchangeRates && Object.keys(exchangeRates).map((currency) => (
-                      <option key={currency} value={currency}>{currency}</option>
-                  ))}
-                </select>
+                <div className="currency-select">
+                  <CurrencyFlag code={toCurrency} />
+                  <select
+                      id="toCurrency"
+                      value={toCurrency}
+                      onChange={(e) => setToCurrency(e.target.value)}
+                  >
+                    {exchangeRates && Object.keys(exchangeRates).map((currency) => (
+                        <option key={currency} value={currency}>{currency}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: #f0f0f0;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -138,6 +138,33 @@ input:focus, select:focus {
   font-size: 16px;
   color: #666;
   font-style: italic;
+}
+
+.currency-select {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.currency-select img {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+}
+
+.currency-select select {
+  padding-left: 40px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 10px);
+  background-position-y: center;
 }
 
 @media (max-width: 480px) {
